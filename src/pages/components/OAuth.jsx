@@ -14,6 +14,7 @@ export default function OAuth() {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
+      //check user 
       const docRef = doc(db, 'users', user.uid);
       const docSnap = await getDoc(docRef);
 
@@ -27,12 +28,12 @@ export default function OAuth() {
       navigate('/');
     } catch (error) {
       toast.error('Could not authorize Google');
-      console.log(error);
+
     }
   }
   return (
     <button
-      type='button '
+      type='button'
       onClick={onGoogleClick}
       className='flex items-center justify-center w-full bg-red-700 text-white px-7 py-3 uppercase text-sm font-medium hover:bg-red-800 active:bg-red-900 shadow-md hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out rounded'
     >
